@@ -1,4 +1,5 @@
 "use client";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import Forms from "./forms";
 import ActiveCards from "./active-cards";
