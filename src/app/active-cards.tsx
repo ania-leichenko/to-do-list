@@ -19,18 +19,19 @@ export default function ActiveCards() {
   console.log("formDataArray", formDataArray);
   return (
     <div>
+      Active
       {formDataArray.map((item, index) => (
-        <Card style={{ width: "18rem" }} key={index}>
+        <Card style={{ width: "18rem" }} key={index} className="card">  
           <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text>{item.description}</Card.Text>
-            <Button variant="primary">
+            <Button variant="primary" className="active-card-button">
               <MdEdit />
             </Button>
-            <Button variant="primary">
+            <Button variant="primary" className="active-card-button">
               <MdOutlineDoneOutline />
             </Button>
-            <Button variant="primary">
+            <Button variant="primary" className="active-card-button">
               <MdDelete />
             </Button>
           </Card.Body>

@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forms {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 12px;
+  margin: 24px;
+   text-align: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px;
+  text-align: center;
+}
+
+.active-card-button {
+  margin: 4px;
+}

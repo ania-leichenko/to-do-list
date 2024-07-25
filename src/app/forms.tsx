@@ -1,6 +1,7 @@
 "use client";
-import { FormEvent, ChangeEvent, useState, useEffect} from "react";
-
+import { FormEvent, ChangeEvent, useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 interface FormComponentProps {
   setTitle: (title: string) => void;
   setDescription: (description: string) => void;
@@ -48,17 +49,20 @@ export default function Forms({
   }
 
   return (
-    <form onSubmit={buttonClick}>
-      <p>Title</p>
-      <input name="title" value={titleValue} onChange={handleChange} />
-      <p>Description</p>
-      <input
-        name="description"
-        value={descriptionValue}
-        onChange={handleChange}
-      />
-      <p></p>
-      <button type="submit">Publish</button>
-    </form>
+    <Form onSubmit={buttonClick} className="forms">
+      <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label name="title" value={titleValue} onChange={handleChange} />
+        <Form.Control type="email" placeholder="Title" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label
+          name="description"
+          value={descriptionValue}
+          onChange={handleChange}
+        />
+        <Form.Control type="email" placeholder="Description" />
+      </Form.Group>
+      <Button type="submit">Publish</Button>
+    </Form>
   );
 }

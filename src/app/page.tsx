@@ -3,15 +3,19 @@ import { useState } from "react";
 import Forms from "./forms";
 import ActiveCards from "./active-cards";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../../styles/globals.css"
 
 export default function Home() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="main">
       <h1>To do list:</h1>
       <Forms setTitle={setTitle} setDescription={setDescription}></Forms>
-      <ActiveCards></ActiveCards>
+      <div className="cards-container">
+        <ActiveCards></ActiveCards>
+        <div className="card">done cards</div>
+      </div>
     </main>
   );
 }
