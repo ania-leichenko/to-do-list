@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, ChangeEvent, useState } from "react";
+import { FormEvent, ChangeEvent, useState, useEffect} from "react";
 
 interface FormComponentProps {
   setTitle: (title: string) => void;
@@ -12,6 +12,16 @@ export default function Forms({
 }: FormComponentProps) {
   const [titleValue, setTitleValue] = useState<string>("");
   const [descriptionValue, setDescriptionValue] = useState<string>("");
+  const [data, setData] = useState<{ title: string; description: string }[]>(
+    []
+  );
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("formData");
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    }
+  }, []);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -26,8 +36,15 @@ export default function Forms({
     event.preventDefault();
     setTitle(titleValue);
     setDescription(descriptionValue);
+
+    const newData = { title: titleValue, description: descriptionValue };
+    const updatedData = [...data, newData];
+
+    setData(updatedData);
+    localStorage.setItem("formData", JSON.stringify(updatedData));
+
     setTitleValue("");
-    setDescriptionValue("") 
+    setDescriptionValue("");
   }
 
   return (
@@ -35,7 +52,11 @@ export default function Forms({
       <p>Title</p>
       <input name="title" value={titleValue} onChange={handleChange} />
       <p>Description</p>
-      <input name="description" value={descriptionValue} onChange={handleChange} />
+      <input
+        name="description"
+        value={descriptionValue}
+        onChange={handleChange}
+      />
       <p></p>
       <button type="submit">Publish</button>
     </form>

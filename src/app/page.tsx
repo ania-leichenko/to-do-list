@@ -1,5 +1,4 @@
 "use client";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import Forms from "./forms";
 import ActiveCards from "./active-cards";
@@ -11,7 +10,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>To do list:</h1>
       <Forms setTitle={setTitle} setDescription={setDescription}></Forms>
-      <ActiveCards title={title} description={description}></ActiveCards>
+      <ActiveCards></ActiveCards>
     </main>
   );
 }

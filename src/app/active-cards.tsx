@@ -1,26 +1,28 @@
 "use client";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-interface ActiveCardsComponentProps {
-  title: string;
-  description: string;
-}
+import { useState, useEffect } from "react";
 
-export default function ActiveCards({
-  title,
-  description,
-}: ActiveCardsComponentProps) {
+
+export default function ActiveCards() {
+  const [formDataArray, setFormDataArray] = useState<
+    { title: string; description: string }[]
+  >([]);
+
+  useEffect(() => {
+    const formData: string | null = localStorage.getItem("formData");
+    if (formData) {
+      setFormDataArray(JSON.parse(formData));
+    }
+  }, []);
+
+  console.log("formDataArray", formDataArray);
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{description}</Card.Text>
-        <Button variant="primary">
-          Edit
-        </Button>
-        <Button variant="primary">Done</Button>
-        <Button variant="primary">Delete</Button>
-      </Card.Body>
-    </Card>
+    <div>
+      {formDataArray.map((item, index) => (
+        <div key={index}>
+          <p>{item.title}</p>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
   );
 }
