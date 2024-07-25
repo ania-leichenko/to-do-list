@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import { MdEdit, MdDelete, MdOutlineDoneOutline } from "react-icons/md";
 
 export default function ActiveCards() {
   const [formDataArray, setFormDataArray] = useState<
@@ -18,10 +20,21 @@ export default function ActiveCards() {
   return (
     <div>
       {formDataArray.map((item, index) => (
-        <div key={index}>
-          <p>{item.title}</p>
-          <p>{item.description}</p>
-        </div>
+        <Card style={{ width: "18rem" }} key={index}>
+          <Card.Body>
+            <Card.Title>{item.title}</Card.Title>
+            <Card.Text>{item.description}</Card.Text>
+            <Button variant="primary">
+              <MdEdit />
+            </Button>
+            <Button variant="primary">
+              <MdOutlineDoneOutline />
+            </Button>
+            <Button variant="primary">
+              <MdDelete />
+            </Button>
+          </Card.Body>
+        </Card>
       ))}
     </div>
   );

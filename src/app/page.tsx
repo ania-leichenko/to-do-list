@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Forms from "./forms";
 import ActiveCards from "./active-cards";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Home() {
   const [title, setTitle] = useState<string>("");
