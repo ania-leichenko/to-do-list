@@ -16,10 +16,9 @@ export default function ActiveCards() {
     }
   }, []);
 
-  console.log("formDataArray", formDataArray);
   return (
     <div>
-      Active
+      Active Tasks
       {formDataArray.map((item, index) => (
         <Card style={{ width: "18rem" }} key={index} className="card">  
           <Card.Body>

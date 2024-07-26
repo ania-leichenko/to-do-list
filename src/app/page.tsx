@@ -4,6 +4,7 @@ import Forms from "./forms";
 import ActiveCards from "./active-cards";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/globals.css"
+import DoneCards from "./done-cards";
 
 export default function Home() {
   const [title, setTitle] = useState<string>("");
@@ -14,7 +15,7 @@ export default function Home() {
       <Forms setTitle={setTitle} setDescription={setDescription}></Forms>
       <div className="cards-container">
         <ActiveCards></ActiveCards>
-        <div className="card">done cards</div>
+        <DoneCards></DoneCards>
       </div>
     </main>
   );
