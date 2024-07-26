@@ -16,11 +16,17 @@ export default function ActiveCards() {
     }
   }, []);
 
+  function handleDelete(index: number) {
+    const updatedFormDataArray = formDataArray.filter((_, i) => i !== index);
+    setFormDataArray(updatedFormDataArray);
+    localStorage.setItem("formData", JSON.stringify(updatedFormDataArray));
+  }
+
   return (
     <div>
       Active Tasks
       {formDataArray.map((item, index) => (
-        <Card style={{ width: "18rem" }} key={index} className="card">  
+        <Card style={{ width: "18rem" }} key={index} className="card">
           <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text>{item.description}</Card.Text>
@@ -30,7 +36,11 @@ export default function ActiveCards() {
             <Button variant="primary" className="active-card-button">
               <MdOutlineDoneOutline />
             </Button>
-            <Button variant="primary" className="active-card-button">
+            <Button
+              variant="primary"
+              className="active-card-button"
+              onClick={() => handleDelete(index)}
+            >
               <MdDelete />
             </Button>
           </Card.Body>

@@ -2,6 +2,7 @@
 import { FormEvent, ChangeEvent, useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+
 interface FormComponentProps {
   setTitle: (title: string) => void;
   setDescription: (description: string) => void;
@@ -50,17 +51,25 @@ export default function Forms({
 
   return (
     <Form onSubmit={buttonClick} className="forms">
-      <Form.Group className="mb-3" controlId="formGroupEmail">
-        <Form.Label name="title" value={titleValue} onChange={handleChange} />
-        <Form.Control type="email" placeholder="Title" />
+      <Form.Group className="mb-3" controlId="formGroupTitle">
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          value={titleValue}
+          onChange={handleChange}
+          placeholder="Title"
+        />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formGroupEmail">
-        <Form.Label
+      <Form.Group className="mb-3" controlId="formGroupDescription">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          type="text"
           name="description"
           value={descriptionValue}
           onChange={handleChange}
+          placeholder="Description"
         />
-        <Form.Control type="email" placeholder="Description" />
       </Form.Group>
       <Button type="submit">Publish</Button>
     </Form>
