@@ -1,29 +1,18 @@
 "use client";
-import { FormEvent, ChangeEvent, useState, useEffect } from "react";
+import { FormEvent, ChangeEvent, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-interface FormComponentProps {
-  setTitle: (title: string) => void;
-  setDescription: (description: string) => void;
+interface FormsProps {
+  data: { title: string; description: string }[];
+  setData: React.Dispatch<
+    React.SetStateAction<{ title: string; description: string }[]>
+  >;
 }
 
-export default function Forms({
-  setTitle,
-  setDescription,
-}: FormComponentProps) {
+export default function Forms({ data, setData }: FormsProps) {
   const [titleValue, setTitleValue] = useState<string>("");
   const [descriptionValue, setDescriptionValue] = useState<string>("");
-  const [data, setData] = useState<{ title: string; description: string }[]>(
-    []
-  );
-
-  useEffect(() => {
-    const storedData = localStorage.getItem("formData");
-    if (storedData) {
-      setData(JSON.parse(storedData));
-    }
-  }, []);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -36,8 +25,6 @@ export default function Forms({
 
   function buttonClick(event: FormEvent) {
     event.preventDefault();
-    setTitle(titleValue);
-    setDescription(descriptionValue);
 
     const newData = { title: titleValue, description: descriptionValue };
     const updatedData = [...data, newData];
