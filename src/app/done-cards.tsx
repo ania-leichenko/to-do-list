@@ -1,17 +1,21 @@
 "use client";
 import Card from "react-bootstrap/Card";
+interface DoneCardsProps {
+  doneTasks: { title: string; description: string }[];
+}
 
-export default function DoneCards() {
+export default function DoneCards({ doneTasks }: DoneCardsProps) {
   return (
     <div>
       Done Tasks
-     
-        <Card style={{ width: "18rem" }}  className="card">
+      {doneTasks.map((item, index) => (
+        <Card style={{ width: "18rem" }} className="card" key={index}>
           <Card.Body>
-            <Card.Title>1</Card.Title>
-            <Card.Text>2</Card.Text>
+            <Card.Title>{item.title}</Card.Title>
+            <Card.Text>{item.description}</Card.Text>
           </Card.Body>
         </Card>
+      ))}
     </div>
   );
 }

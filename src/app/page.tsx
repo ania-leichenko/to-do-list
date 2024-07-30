@@ -10,6 +10,16 @@ export default function Home() {
   const [data, setData] = useState<{ title: string; description: string }[]>(
     []
   );
+  const [doneTasks, setDoneTasks] = useState<
+    { title: string; description: string }[]
+  >([]); ;
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("doneTasks");
+    if (storedData) {
+      setDoneTasks(JSON.parse(storedData));
+    }
+  }, []);
 
   useEffect(() => {
     const storedData = localStorage.getItem("formData");
@@ -23,8 +33,13 @@ export default function Home() {
       <h1>To do list:</h1>
       <Forms data={data} setData={setData} />
       <div className="cards-container">
-        <ActiveCards data={data} setData={setData} />
-        <DoneCards />
+        <ActiveCards
+          data={data}
+          setData={setData}
+          doneTasks={doneTasks}
+          setDoneTasks={setDoneTasks}
+        />
+        <DoneCards doneTasks={doneTasks} />
       </div>
     </main>
   );

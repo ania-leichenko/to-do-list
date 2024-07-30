@@ -11,9 +11,18 @@ interface ActiveCardsProps {
   setData: React.Dispatch<
     React.SetStateAction<{ title: string; description: string }[]>
   >;
+  doneTasks: { title: string; description: string }[];
+  setDoneTasks: React.Dispatch<
+    React.SetStateAction<{ title: string; description: string }[]>
+  >;
 }
 
-export default function ActiveCards({ data, setData }: ActiveCardsProps) {
+export default function ActiveCards({
+  data,
+  setData,
+  doneTasks,
+  setDoneTasks,
+}: ActiveCardsProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [editTitle, setEditTitle] = useState<string>("");
@@ -43,12 +52,24 @@ export default function ActiveCards({ data, setData }: ActiveCardsProps) {
           ? { title: editTitle, description: editDescription }
           : item
       );
-      
+
       setData(updatedData);
       localStorage.setItem("formData", JSON.stringify(updatedData));
       setShowModal(false);
     }
   }
+  function handleDone(index: number) {
+    const updatedData = data.filter((_, i) => i !== index);
+    const doneTask = data[index];
+    if (doneTask) {
+      const updateDoneTask = [...doneTasks, doneTask];
+      setDoneTasks(updateDoneTask);
+      localStorage.setItem("doneTasks", JSON.stringify(updateDoneTask));
+      setData(updatedData);
+      localStorage.setItem("formData", JSON.stringify(updatedData));
+    }
+  }
+
   function handleDelete(index: number) {
     const updatedData = data.filter((_, i) => i !== index);
     setData(updatedData);
@@ -61,7 +82,7 @@ export default function ActiveCards({ data, setData }: ActiveCardsProps) {
       {data.map((item, index) => (
         <Card style={{ width: "18rem" }} key={index} className="card">
           <Card.Body>
-            <Card.Title title="1">{item.title}</Card.Title>
+            <Card.Title>{item.title}</Card.Title>
             <Card.Text>{item.description}</Card.Text>
             <Button
               variant="primary"
@@ -70,7 +91,11 @@ export default function ActiveCards({ data, setData }: ActiveCardsProps) {
             >
               <MdEdit />
             </Button>
-            <Button variant="primary" className="active-card-button">
+            <Button
+              variant="primary"
+              className="active-card-button"
+              onClick={() => handleDone(index)}
+            >
               <MdOutlineDoneOutline />
             </Button>
             <Button
