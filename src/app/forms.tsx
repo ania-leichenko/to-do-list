@@ -2,7 +2,7 @@
 import { FormEvent, ChangeEvent, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import React from "react";
 interface FormsProps {
   data: { title: string; description: string }[];
   setData: React.Dispatch<
@@ -11,6 +11,7 @@ interface FormsProps {
 }
 
 export default function Forms({ data, setData }: FormsProps) {
+  let taskField = React.createRef();
   const [titleValue, setTitleValue] = useState<string>("");
   const [descriptionValue, setDescriptionValue] = useState<string>("");
 
@@ -35,9 +36,11 @@ export default function Forms({ data, setData }: FormsProps) {
     setTitleValue("");
     setDescriptionValue("");
   }
+  const onKeyDown = () => {
+  };
 
   return (
-    <Form onSubmit={buttonClick} className="forms">
+    <Form onSubmit={buttonClick} className="forms" onKeyDown={onKeyDown}>
       <Form.Group className="mb-3" controlId="formGroupTitle">
         <Form.Label>Title</Form.Label>
         <Form.Control
