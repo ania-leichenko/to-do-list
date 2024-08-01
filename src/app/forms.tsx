@@ -61,7 +61,7 @@ export default function Forms({ data, setData }: FormsProps) {
           placeholder="Description"
         />
       </Form.Group>
-      <Button type="submit">Publish</Button>
+      <Button className="form-btn" type="submit">Publish</Button>
     </Form>
   );
 }

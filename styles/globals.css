@@ -1,3 +1,9 @@
+body {
+  background-image: url("/images/2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .main {
   display: flex;
   flex-direction: column;
@@ -14,10 +20,10 @@
 
 .cards-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin: 24px;
-   text-align: center;
+  text-align: center;
 }
 
 .card {
@@ -30,4 +36,23 @@
 
 .active-card-button {
   margin: 4px;
+  background-color: pink;
+  border-color: rgb(236, 150, 164);
+}
+.active-card-button:hover{
+  background-color: rgb(246, 205, 212);
+  border-color: rgb(236, 150, 164);
+}
+
+.form-btn {
+  background-color: pink;
+  border-color: rgb(236, 150, 164);
+}
+
+.form-btn:hover {
+  background-color: rgb(246, 205, 212);
+  border-color: rgb(236, 150, 164);
+}
+.custom-modal {
+  backdrop-filter: blur(5px);
 }

@@ -78,28 +78,25 @@ export default function ActiveCards({
 
   return (
     <div>
-      Active Tasks
+      <div>Active Tasks</div>
       {data.map((item, index) => (
         <Card style={{ width: "18rem" }} key={index} className="card">
           <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text>{item.description}</Card.Text>
             <Button
-              variant="primary"
               className="active-card-button"
               onClick={() => handleEdit(index)}
             >
               <MdEdit />
             </Button>
             <Button
-              variant="primary"
               className="active-card-button"
               onClick={() => handleDone(index)}
             >
               <MdOutlineDoneOutline />
             </Button>
             <Button
-              variant="primary"
               className="active-card-button"
               onClick={() => handleDelete(index)}
             >
@@ -108,49 +105,44 @@ export default function ActiveCards({
           </Card.Body>
         </Card>
       ))}
-      {showModal && (
-        <Form>
-          <div
-            className="modal show"
-            style={{ display: "block", position: "initial" }}
-          >
-            <Modal.Dialog>
-              <Modal.Header>
-                <Form.Group className="mb-3" controlId="formGroupTitle">
-                  <Form.Label>Title</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="title"
-                    value={editTitle}
-                    onChange={handleChange}
-                    placeholder="Title"
-                  />
-                </Form.Group>
-              </Modal.Header>
-              <Modal.Body>
-                <Form.Group className="mb-3" controlId="formGroupDescription">
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="description"
-                    value={editDescription}
-                    onChange={handleChange}
-                    placeholder="Description"
-                  />
-                </Form.Group>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={handleSave}>
-                  Save changes
-                </Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </div>
-        </Form>
-      )}
+
+      <Modal show={showModal} onHide={handleClose} className="custom-modal">
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Task</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="formGroupTitle">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={editTitle}
+                onChange={handleChange}
+                placeholder="Title"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formGroupDescription">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                type="text"
+                name="description"
+                value={editDescription}
+                onChange={handleChange}
+                placeholder="Description"
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSave}>
+            Save changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
